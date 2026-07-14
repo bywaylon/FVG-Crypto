@@ -23,4 +23,4 @@ def get_top_coins():
     )
 
     # Return top 100 coins
-    return df.head(100)["symbol"].tolist()
+    return [symbol.replace("USDT", "") for symbol in df.head(100)["symbol"].tolist()]
