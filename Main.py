@@ -9,6 +9,7 @@ setups = []
 
 print("Scanning coins...\n")
 
+
 for coin in coins:
 
     symbol = coin + "USDT"
@@ -19,17 +20,29 @@ for coin in coins:
         setups.append(result)
 
 
-print("\n🔥 FVG SETUPS FOUND 🔥\n")
+print("\n🔥 BEST FVG SETUPS 🔥\n")
 
 
 if len(setups) == 0:
-    print("No FVG setups found today.")
+
+    print("No setups found.")
 
 else:
 
     for setup in setups:
+
         print(
             setup["coin"],
             "-",
-            setup["type"]
+            setup["direction"],
+            "- Score:",
+            setup["score"]
         )
+
+        print("Reasons:")
+
+        for reason in setup["reasons"]:
+            print(" ✅", reason)
+
+        print()
+        

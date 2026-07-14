@@ -39,7 +39,6 @@ def get_candles(symbol, interval="1h"):
     return df
 
 
-
 def check_fvg(symbol):
 
     df = get_candles(symbol)
@@ -52,50 +51,40 @@ def check_fvg(symbol):
     volume = volume_strength(df)
 
 
-    # Trend
     if trend == "Bullish":
         score += 25
         reasons.append("Bullish trend")
-
     else:
         score += 25
         reasons.append("Bearish trend")
 
 
-    # FVG size
     if size > 0.1:
         score += 25
         reasons.append("Large FVG")
 
 
-    # Volume
     if volume > 1.3:
         score += 25
         reasons.append("Volume increase")
 
 
-    # Bullish FVG
     if df["low"].iloc[-1] > df["high"].iloc[-3]:
-
-        score += 25
 
         return {
             "coin": symbol.replace("USDT", ""),
             "direction": "LONG",
-            "score": score,
+            "score": score + 25,
             "reasons": reasons
         }
 
 
-    # Bearish FVG
     if df["high"].iloc[-1] < df["low"].iloc[-3]:
-
-        score += 25
 
         return {
             "coin": symbol.replace("USDT", ""),
             "direction": "SHORT",
-            "score": score,
+            "score": score + 25,
             "reasons": reasons
         }
 
